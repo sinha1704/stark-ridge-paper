@@ -33,21 +33,28 @@
   --foreground: #1E2922;
 }
 
+/* Hardware accelerated 60fps 3D flips */
 .perspective-1000 {
-  perspective: 1000px;
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
 }
 
 .preserve-3d {
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .backface-hidden {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .rotate-y-180 {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0);
+  -webkit-transform: rotateY(180deg) translateZ(0);
 }
 
 .bg-paper-texture {

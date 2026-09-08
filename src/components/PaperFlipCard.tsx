@@ -42,11 +42,14 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
     <div className="paper-card-container w-full h-[470px] perspective-1000">
       <div
         onClick={handleFlip}
-        className={`relative w-full h-full duration-700 preserve-3d transition-transform cursor-pointer select-none rounded-2xl ${
+        style={{
+          transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+        className={`relative w-full h-full preserve-3d cursor-pointer select-none rounded-2xl ${
           isFlipped ? "rotate-y-180" : ""
         }`}
       >
-        <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white border border-[#E8DFC9] shadow-sm hover:shadow-xl transition-shadow flex flex-col overflow-hidden">
+        <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white border border-[#E8DFC9] shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col overflow-hidden">
           <div className="px-4 py-3 flex items-center justify-between border-b border-[#F6EFE2] bg-[#FDFBF7]">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-full bg-[#235D41] text-white flex items-center justify-center font-serif text-xs font-bold">
@@ -71,12 +74,14 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
             <img
               src={imgError ? fallbackImages[item.id] || item.image : item.image}
               alt={item.title}
+              loading="lazy"
+              decoding="async"
               onError={() => {
                 if (!imgError) setImgError(true);
               }}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-4 text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-4 text-white pointer-events-none">
               <span className="text-[10px] uppercase font-bold tracking-widest text-[#90CAAC]">
                 {item.specs.gsm}
               </span>
@@ -85,7 +90,7 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
               </h3>
             </div>
 
-            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow">
+            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow pointer-events-none">
               <RotateCw className="w-3 h-3 text-[#5DAE85]" />
               <span>Tap to flip</span>
             </div>
@@ -97,7 +102,7 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
               className="flex items-center gap-1.5 text-xs font-semibold text-[#1E2922] hover:text-red-600 transition-colors"
             >
               <Heart
-                className={`w-4 h-4 transition-transform active:scale-125 ${
+                className={`w-4 h-4 transition-transform duration-200 active:scale-125 ${
                   liked ? "fill-red-500 text-red-500" : "text-[#7C5438]"
                 }`}
               />

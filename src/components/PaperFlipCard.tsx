@@ -50,8 +50,8 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
         }`}
       >
         <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white border border-[#E8DFC9] shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col overflow-hidden">
-          <div className="px-4 py-3 flex items-center justify-between border-b border-[#F6EFE2] bg-[#FDFBF7]">
-            <div className="flex items-center gap-2.5">
+          <div className="px-3.5 sm:px-4 py-3 flex items-center justify-between border-b border-[#F6EFE2] bg-[#FDFBF7]">
+            <div className="flex items-center gap-2 sm:gap-2.5">
               <div className="w-8 h-8 rounded-full bg-[#235D41] text-white flex items-center justify-center font-serif text-xs font-bold">
                 SR
               </div>
@@ -96,7 +96,7 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
             </div>
           </div>
 
-          <div className="px-4 py-3 bg-white border-t border-[#F6EFE2] flex items-center justify-between">
+          <div className="px-3.5 sm:px-4 py-3 bg-white border-t border-[#F6EFE2] flex items-center justify-between">
             <button
               onClick={toggleLike}
               className="flex items-center gap-1.5 text-xs font-semibold text-[#1E2922] hover:text-red-600 transition-colors"
@@ -116,9 +116,9 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
           </div>
         </div>
 
-        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl bg-[#F6EFE2] border-2 border-[#D3C5B2] shadow-xl p-6 flex flex-col justify-between">
+        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl bg-[#F6EFE2] border-2 border-[#D3C5B2] shadow-xl p-4 sm:p-6 flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between pb-3 border-b border-[#D3C5B2]">
+            <div className="flex items-center justify-between pb-2.5 border-b border-[#D3C5B2]">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#235D41]" />
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#235D41]">
@@ -130,11 +130,11 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
               </div>
             </div>
 
-            <h3 className="font-serif text-xl font-bold text-[#1E2922] mt-4">
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1E2922] mt-3">
               {item.title}
             </h3>
 
-            <div className="mt-5 space-y-2.5 bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#E8DFC9] text-xs">
+            <div className="mt-4 space-y-2 bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-[#E8DFC9] text-xs">
               <div className="flex justify-between py-1 border-b border-[#F6EFE2]">
                 <span className="text-[#7C5438] font-medium">Basis Weight:</span>
                 <span className="font-bold text-[#1E2922]">{item.specs.gsm}</span>
@@ -157,10 +157,11 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[#D3C5B2] flex items-center justify-between text-xs text-[#5E402C]">
-            <span>100% Biodegradable & Recyclable</span>
-            <span className="font-bold text-[#235D41] flex items-center gap-1">
-              <RotateCw className="w-3 h-3" /> Flip to photo
+          <div className="pt-3 border-t border-[#D3C5B2] flex items-center justify-between text-[11px] sm:text-xs text-[#5E402C] gap-1">
+            <span className="truncate">100% Biodegradable</span>
+            <span className="font-bold text-[#235D41] flex items-center gap-1 whitespace-nowrap flex-shrink-0">
+              <RotateCw className="w-3 h-3" />
+              <span>Flip to photo</span>
             </span>
           </div>
         </div>

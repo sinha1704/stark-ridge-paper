@@ -120,14 +120,14 @@ export default function Home() {
           to flip and reveal technical calipers, GSM, and eco-certifications.
         </p>
 
-        {/* Category Filter Pills: flex-wrap so on tablet/desktop it never gets cut off, and on mobile it scrolls with generous right padding */}
-        <div className="mt-6 sm:mt-8 w-full overflow-x-auto no-scrollbar py-2">
-          <div className="flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-2.5 px-4 sm:px-2 w-max sm:w-full mx-auto pe-8 sm:pe-2">
+        {/* Modern user-friendly Category Grid on mobile (no horizontal scrolling), wrapping on desktop */}
+        <div className="mt-6 sm:mt-8 w-full max-w-3xl mx-auto px-2 sm:px-4">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`text-xs px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full font-medium transition-all cursor-pointer whitespace-nowrap flex-shrink-0 ${
+                className={`text-xs px-3.5 sm:px-4 py-2 rounded-full font-medium transition-all cursor-pointer text-center ${
                   selectedCategory === cat.id
                     ? "bg-[#235D41] text-white shadow-sm font-bold scale-[1.02]"
                     : "bg-[#F6EFE2] text-[#5E402C] hover:bg-[#ECDECA]"

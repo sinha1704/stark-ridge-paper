@@ -120,20 +120,23 @@ export default function Home() {
           to flip and reveal technical calipers, GSM, and eco-certifications.
         </p>
 
-        <div className="mt-6 sm:mt-8 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-2 w-full px-1">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`text-xs px-3.5 py-1.5 rounded-full font-medium transition-all cursor-pointer whitespace-nowrap flex-shrink-0 ${
-                selectedCategory === cat.id
-                  ? "bg-[#235D41] text-white shadow-xs font-bold"
-                  : "bg-[#F6EFE2] text-[#5E402C] hover:bg-[#ECDECA]"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+        {/* Category Filter Buttons with generous horizontal padding so no buttons are clipped */}
+        <div className="mt-6 sm:mt-8 w-full overflow-x-auto no-scrollbar py-2.5">
+          <div className="flex items-center justify-start sm:justify-center gap-2.5 min-w-max px-4 sm:px-6 mx-auto">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`text-xs px-4 py-2 rounded-full font-medium transition-all cursor-pointer whitespace-nowrap flex-shrink-0 ${
+                  selectedCategory === cat.id
+                    ? "bg-[#235D41] text-white shadow-sm font-bold scale-[1.02]"
+                    : "bg-[#F6EFE2] text-[#5E402C] hover:bg-[#ECDECA]"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -160,7 +163,7 @@ export default function Home() {
 
       <footer className="bg-[#193E2D] text-[#FDFBF7] py-8 sm:py-9 border-t border-[#235D41] w-full">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col items-center sm:flex-row sm:justify-between gap-4 text-center sm:text-left text-xs">
-          <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2">
+          <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
             <span className="font-serif font-bold text-white text-sm sm:text-base tracking-tight">
               STARK RIDGE PAPER
             </span>

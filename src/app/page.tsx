@@ -99,7 +99,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section ref={heroRef} className="pt-8 sm:pt-16 pb-8 sm:pb-10 text-center px-4 max-w-4xl mx-auto w-full">
+      <section ref={heroRef} className="pt-8 sm:pt-16 pb-8 sm:pb-10 text-center px-4 max-w-5xl mx-auto w-full">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DEF0E6] text-[#235D41] text-xs font-bold uppercase tracking-wider mb-3.5">
           <Leaf className="w-3.5 h-3.5" />
           <span>Sustainable Paper Packaging</span>
@@ -120,14 +120,14 @@ export default function Home() {
           to flip and reveal technical calipers, GSM, and eco-certifications.
         </p>
 
-        {/* Category Filter Buttons with generous horizontal padding so no buttons are clipped */}
-        <div className="mt-6 sm:mt-8 w-full overflow-x-auto no-scrollbar py-2.5">
-          <div className="flex items-center justify-start sm:justify-center gap-2.5 min-w-max px-4 sm:px-6 mx-auto">
+        {/* Category Filter Pills: flex-wrap so on tablet/desktop it never gets cut off, and on mobile it scrolls with generous right padding */}
+        <div className="mt-6 sm:mt-8 w-full overflow-x-auto no-scrollbar py-2">
+          <div className="flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-2.5 px-4 sm:px-2 w-max sm:w-full mx-auto pe-8 sm:pe-2">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`text-xs px-4 py-2 rounded-full font-medium transition-all cursor-pointer whitespace-nowrap flex-shrink-0 ${
+                className={`text-xs px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full font-medium transition-all cursor-pointer whitespace-nowrap flex-shrink-0 ${
                   selectedCategory === cat.id
                     ? "bg-[#235D41] text-white shadow-sm font-bold scale-[1.02]"
                     : "bg-[#F6EFE2] text-[#5E402C] hover:bg-[#ECDECA]"

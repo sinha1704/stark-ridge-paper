@@ -1,32 +1,44 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
 });
 
 const serif = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-serif",
-  weight: ["400", "600", "700", "900"],
+  weight: ["600", "700"],
+  display: "swap",
+  preload: true,
 });
 
+export const viewport: Viewport = {
+  themeColor: "#235D41",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: "Stark Ridge Paper | Sustainable Paper Packaging, Reimagined",
+  title: "Stark Ridge Paper | Sustainable Paper Packaging & Specimen Feed",
   description:
-    "Leading manufacturer and innovator of eco-friendly kraft paper, corrugated fluting, luxury eco-packaging, food grade paperboards, and customized paper solutions.",
-  keywords: [
-    "kraft paper",
-    "sustainable packaging",
-    "corrugated paper",
-    "food grade paper",
-    "eco packaging",
-    "Stark Ridge Paper",
-    "FSC certified paper",
-  ],
+    "Explore our collection of eco-friendly kraft paper, corrugated fluting, luxury boards, and food grade barrier solutions.",
+  authors: [{ name: "Stark Ridge Paper Co." }],
+  openGraph: {
+    title: "Stark Ridge Paper | Sustainable Paper Packaging",
+    description: "Interactive 3D paper specimen feed & technical datasheets.",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -36,7 +48,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-[#FDFBF7] text-[#1E2922] font-sans antialiased selection:bg-[#2D5A43] selection:text-white">
+      <body className="min-h-screen bg-[#FDFBF7] text-[#1E2922] font-sans antialiased selection:bg-[#235D41] selection:text-white">
         {children}
       </body>
     </html>

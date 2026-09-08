@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PAPER_ITEMS, CATEGORIES } from "@/data/products";
@@ -18,9 +18,15 @@ export default function Home() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const filteredPapers = selectedCategory === "all"
-    ? PAPER_ITEMS
-    : PAPER_ITEMS.filter((p) => p.category === selectedCategory);
+  const filteredPapers = useMemo(() => {
+    return selectedCategory === "all"
+      ? PAPER_ITEMS
+      : PAPER_ITEMS.filter((p) => p.category === selectedCategory);
+  }, [selectedCategory]);
+
+  const handleSelectCategory = useCallback((catId: string) => {
+    setSelectedCategory(catId);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -125,7 +131,7 @@ export default function Home() {
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
+                onClick={() => handleSelectCategory(cat.id)}
                 className={`text-xs px-3.5 sm:px-4 py-2 rounded-full font-medium transition-all cursor-pointer text-center ${
                   selectedCategory === cat.id
                     ? "bg-[#235D41] text-white shadow-sm font-bold scale-[1.02]"

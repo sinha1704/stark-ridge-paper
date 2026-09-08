@@ -120,7 +120,6 @@ export default function Home() {
           to flip and reveal technical calipers, GSM, and eco-certifications.
         </p>
 
-        {/* Modern user-friendly Category Grid on mobile (no horizontal scrolling), wrapping on desktop */}
         <div className="mt-6 sm:mt-8 w-full max-w-3xl mx-auto px-2 sm:px-4">
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
             {CATEGORIES.map((cat) => (
@@ -155,8 +154,12 @@ export default function Home() {
           ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
-          {filteredPapers.map((item) => (
-            <PaperFlipCard key={item.id} item={item} />
+          {filteredPapers.map((item, index) => (
+            <PaperFlipCard
+              key={item.id}
+              item={item}
+              priority={index < 3}
+            />
           ))}
         </div>
       </main>

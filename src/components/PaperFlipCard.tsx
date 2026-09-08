@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { PaperCardItem } from "@/data/products";
 import { Heart, RotateCw, CheckCircle2 } from "lucide-react";
 
 interface PaperFlipCardProps {
   item: PaperCardItem;
+  priority?: boolean;
 }
 
-export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
+export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item, priority = false }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(item.likes);
@@ -37,6 +39,8 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
     "5": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80",
     "6": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
   };
+
+  const imgSrc = imgError ? fallbackImages[item.id] || item.image : item.image;
 
   return (
     <div className="paper-card-container w-full h-[470px] perspective-1000">
@@ -71,17 +75,19 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
           </div>
 
           <div className="relative flex-1 overflow-hidden group bg-[#EBE3D3]">
-            <img
-              src={imgError ? fallbackImages[item.id] || item.image : item.image}
+            <Image
+              src={imgSrc}
               alt={item.title}
-              loading="lazy"
-              decoding="async"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={priority}
+              quality={85}
               onError={() => {
                 if (!imgError) setImgError(true);
               }}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-4 text-white pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-4 text-white pointer-events-none z-10">
               <span className="text-[10px] uppercase font-bold tracking-widest text-[#90CAAC]">
                 {item.specs.gsm}
               </span>
@@ -90,7 +96,7 @@ export const PaperFlipCard: React.FC<PaperFlipCardProps> = ({ item }) => {
               </h3>
             </div>
 
-            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow pointer-events-none">
+            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow pointer-events-none z-10">
               <RotateCw className="w-3 h-3 text-[#5DAE85]" />
               <span>Tap to flip</span>
             </div>
